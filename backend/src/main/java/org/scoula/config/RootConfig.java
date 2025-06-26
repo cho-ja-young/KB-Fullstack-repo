@@ -2,6 +2,7 @@ package org.scoula.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,16 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({"classpath:/application.properties"})
-// @MapperScan(basePackages = {"org.scoula.mapper"})
+@MapperScan(basePackages = {"org.scoula.board.mapper"})  // 게시판 매퍼 스캔
+@ComponentScan(basePackages = {"org.scoula.board.service"})  // 게시판 서비스 스캔
+@Log4j2
+@EnableTransactionManagement
 public class RootConfig {
+    // 데이터베이스 연결 및 트랜잭션 설정
     @Value("${jdbc.driver}") String driver;
     @Value("${jdbc.url}") String url;
     @Value("${jdbc.username}") String username;
