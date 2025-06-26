@@ -1,6 +1,7 @@
 package org.scoula.config;
 
 import lombok.extern.log4j.Log4j2;
+import org.scoula.security.config.SecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -15,23 +16,17 @@ import javax.servlet.ServletRegistration;
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { RootConfig.class };
+        return new Class[] { RootConfig.class, SecurityConfig.class };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { ServletConfig.class, SwaggerConfig.class };
+        return new Class[] { ServletConfig.class };
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{
-                "/",
-                "/swagger-ui.html",
-                "/swagger-resources/**",
-                "/v2/api-docs",
-                "/webjars/**"
-        };
+        return new String[] { "/" };
     }
 
     protected Filter[] getServletFilters() {
