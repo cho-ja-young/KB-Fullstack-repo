@@ -20,8 +20,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({"classpath:/application.properties"})
-@MapperScan(basePackages = {"org.scoula.board.mapper"})  // 게시판 매퍼 스캔
-@ComponentScan(basePackages = {"org.scoula.board.service"})  // 게시판 서비스 스캔
+@MapperScan(basePackages = {"org.scoula.board.mapper", "org.scoula.member.mapper"})  // 게시판 매퍼 스캔
+@ComponentScan(basePackages = {"org.scoula.board.service", "org.scoula.member.service"})  // 게시판 서비스 스캔
 @Log4j2
 @EnableTransactionManagement
 public class RootConfig {

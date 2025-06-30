@@ -39,7 +39,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     }
 
     // 📍 파일 업로드 설정 상수
-    final String LOCATION = "c:/upload";
+    final String LOCATION = "/Users/jordy/Documents/upload";
     final long MAX_FILE_SIZE = 1024 * 1024 * 10L;      // 10MB
     final long MAX_REQUEST_SIZE = 1024 * 1024 * 20L;   // 20MB
     final int FILE_SIZE_THRESHOLD = 1024 * 1024 * 5;   // 5MB

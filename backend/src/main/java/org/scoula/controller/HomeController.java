@@ -11,5 +11,6 @@ public class HomeController {
     public String home() {
         log.info("===============> HomeController");
         return "index"; // view 이름
+//        return "forward:/index.html";
     }
 }

@@ -25,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
     private final BoardMapper boardMapper;  // Mapper 의존성 주입
 
     // 파일 저장될 디렉토리 경로
-    private final static String BASE_DIR = "c:/upload/board";
+    private final static String BASE_DIR = "/Users/jordy/Documents/upload/board";
 
     // 목록 조회 서비스
     @Override

@@ -28,15 +28,27 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
         setAuthenticationFailureHandler(loginFailureHandler); // 로그인 실패 핸들러 등록
     }
 
-    // 로그인 요청 URL인 경우 로그인 작업 처리
+//    // 로그인 요청 URL인 경우 로그인 작업 처리
+//    @Override
+//    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
+//        // 요청 BODY의 JSON에서 username, password  LoginDTO
+//        LoginDTO login = LoginDTO.of(request);
+//        // 인증 토큰(UsernamePasswordAuthenticationToken) 구성
+//        UsernamePasswordAuthenticationToken authenticationToken =
+//                new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
+//        // AuthenticationManager에게 인증 요청
+//        return getAuthenticationManager().authenticate(authenticationToken);
+//    }
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
-        // 요청 BODY의 JSON에서 username, password  LoginDTO
+        log.info("🚨 [JwtUsernamePasswordAuthenticationFilter] 로그인 요청 감지됨");
         LoginDTO login = LoginDTO.of(request);
-        // 인증 토큰(UsernamePasswordAuthenticationToken) 구성
+        log.info("📥 로그인 시도 - 아이디: {}, 비번: {}", login.getUsername(), login.getPassword());
+
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
-        // AuthenticationManager에게 인증 요청
+
         return getAuthenticationManager().authenticate(authenticationToken);
     }
+
 }
