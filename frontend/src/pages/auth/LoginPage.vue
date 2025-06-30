@@ -43,11 +43,13 @@ const userInfo = ref({});
 // 로그인 처리 함수
 const handleLogin = async () => {
   try {
+    console.log('📤 로그인 요청 시작', loginForm.value);
     // 실제 요청 주소 : http://localhost:8080/api/auth/login
     // loginForm.value -> {username: '', password: '',}
     // -> axios가 자동으로 JSON으로 변환!
     const response = await axios.post('/api/auth/login', loginForm.value);
 
+    console.log('✅ 로그인 성공 응답', response.data);
     console.log('response.data :', response.data); // 서버 응답 데이터
 
     if (response.status === 200) {

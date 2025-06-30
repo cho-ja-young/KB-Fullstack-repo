@@ -31,6 +31,6 @@ export default defineConfig({
   // 빌드 설정
   build: {
     outDir:
-        'C:/KB/Fullstack/scoula/backend/src/main/webapp/resources',
+        '/Users/jordy/Desktop/workspace/KB-Fullstack-repo/backend/src/main/webapp/resources',
   },
 });
