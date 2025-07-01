@@ -116,18 +116,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler);           // 403 에러 처리
 
 
+        http
+                .authorizeRequests() // 경로별 접근 권한 설정
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+//                .anyRequest().authenticated(); // 현재는 모든 접근 허용 (개발 단계)
+                .antMatchers(HttpMethod.POST,"/api/member").authenticated()
+                .antMatchers(HttpMethod.PUT,"/api/member", "/api/member/*/changepassword").authenticated()
+                .anyRequest().permitAll();
+
+
         //  HTTP 보안 설정
         http.httpBasic().disable()      // 기본 HTTP 인증 비활성화
                 .csrf().disable()           // CSRF 보호 비활성화 (REST API에서는 불필요)
                 .formLogin().disable()      // 폼 로그인 비활성화 (JSON 기반 API 사용)
                 .sessionManagement()        // 세션 관리 설정
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);  // 무상태 모드
-
-
-        http
-                .authorizeRequests() // 경로별 접근 권한 설정
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .anyRequest().authenticated(); // 현재는 모든 접근 허용 (개발 단계)
     }
 
 
