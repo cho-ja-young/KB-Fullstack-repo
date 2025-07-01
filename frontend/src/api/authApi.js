@@ -26,7 +26,7 @@ export default {
             formData.append('avatar', member.avatar);
         }
 
-        const { data } = await api.post(BASE_URL, formData, headers);
+        const { data } = await api.post(`${BASE_URL}/signup`, formData, headers);
         console.log('AUTH POST:', data);
         return data;
     },

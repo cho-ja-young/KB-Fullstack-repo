@@ -28,7 +28,7 @@ public class MemberController {
     }
 
     // 회원가입 API
-    @PostMapping("")
+    @PostMapping("/signup")
     public ResponseEntity<MemberDTO> join(MemberJoinDTO member) {
         return ResponseEntity.ok(service.join(member));
     }
