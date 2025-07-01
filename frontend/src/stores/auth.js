@@ -65,6 +65,11 @@ export const useAuthStore = defineStore('auth', () => {
     }
   };
 
+  const changeProfile = (member) => {
+    state.value.user.email = member.email;
+    localStorage.setItem('auth', JSON.stringify(state.value));
+  };
+
   // 스토어 초기화 시 자동 실행
   load();
 
@@ -74,6 +79,7 @@ export const useAuthStore = defineStore('auth', () => {
     username,
     email,
     isLogin,
+    changeProfile,
     login,
     logout,
     getToken: () => state.value.token,
