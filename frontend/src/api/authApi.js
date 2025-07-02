@@ -1,4 +1,4 @@
-import api from '@/api';
+import api from '@/api'; //  axios interceptor가 추가된 axios 인스턴스 사용
 
 const BASE_URL = '/api/member';
 const headers = { 'Content-Type': 'multipart/form-data' }; // 파일 업로드용 헤더
