@@ -122,6 +122,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .anyRequest().authenticated(); // 현재는 모든 접근 허용 (개발 단계)
                 .antMatchers(HttpMethod.POST,"/api/member").authenticated()
                 .antMatchers(HttpMethod.PUT,"/api/member", "/api/member/*/changepassword").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/board/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/board/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/board/**").authenticated()
                 .anyRequest().permitAll();
 
 

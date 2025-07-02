@@ -2,11 +2,18 @@ package org.scoula.board.controller;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.scoula.board.domain.BoardAttachmentVO;
 import org.scoula.board.service.BoardService;
 import org.scoula.board.dto.BoardDTO;
+import org.scoula.common.pagination.Page;
+import org.scoula.common.pagination.PageRequest;
+import org.scoula.common.util.UploadFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -24,11 +31,8 @@ public class BoardController {
             @ApiResponse(code = 500, message = "서버에서 오류가 발생했습니다.")
     })
     @GetMapping("")
-//    public List<BoardDTO> getList() {
-//        return service.getList();
-//    }
-    public ResponseEntity<List<BoardDTO>> getList() {
-        return ResponseEntity.ok(service.getList());
+    public ResponseEntity<Page> getList(PageRequest pageRequest) {
+        return ResponseEntity.ok(service.getPage(pageRequest));
     }
 
     @ApiOperation(value = "상세정보 얻기", notes = "게시글 상제 정보를 얻는 API")
@@ -51,9 +55,7 @@ public class BoardController {
             @ApiResponse(code = 500, message = "서버에서 오류가 발생했습니다.")
     })
     @PostMapping("")
-    public ResponseEntity<BoardDTO> create(
-            @ApiParam(value = "게시글 객체", required = true)
-            @RequestBody BoardDTO board) {
+    public ResponseEntity<BoardDTO> create(BoardDTO board) {
         return ResponseEntity.ok(service.create(board));
     }
 
@@ -87,6 +89,17 @@ public class BoardController {
         BoardDTO deleteBoard = service.delete(no);
 //        return ResponseEntity.ok(service.delete(no));
         return ResponseEntity.ok(deleteBoard);
+    }
+
+    @GetMapping("/download/{no}")
+    public void download(@PathVariable Long no,  HttpServletResponse response) throws Exception {
+        BoardAttachmentVO attachment = service.getAttachment(no);
+        File file = new File(attachment.getPath());
+        UploadFiles.download(response, file, attachment.getFilename());
+    }
+    @DeleteMapping("/deleteAttachment/{no}")
+    public ResponseEntity<Boolean> deleteAttachment(@PathVariable Long no) throws Exception {
+        return ResponseEntity.ok(service.deleteAttachment(no));
     }
 
 }

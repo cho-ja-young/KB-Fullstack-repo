@@ -29,14 +29,14 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
         return new String[] { "/" };
     }
 
-    protected Filter[] getServletFilters() {
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-
-        return new Filter[] { characterEncodingFilter };
-    }
+//    protected Filter[] getServletFilters() {
+//        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+//
+//        characterEncodingFilter.setEncoding("UTF-8");
+//        characterEncodingFilter.setForceEncoding(true);
+//
+//        return new Filter[] { characterEncodingFilter };
+//    }
 
     // 📍 파일 업로드 설정 상수
     final String LOCATION = "/Users/jordy/Documents/upload";
