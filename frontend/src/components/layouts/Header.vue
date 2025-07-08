@@ -11,11 +11,15 @@ import config from '@/config';
 
 <style scoped>
 .jumbotron {
-  background-image: url('@/assets/images/background.jpg');
+  background-image: url('@/assets/images/background3.jpeg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   color: white;
   padding: 2rem;
+  min-height: 250px; /* ✅ 세로 길이 확장 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>
