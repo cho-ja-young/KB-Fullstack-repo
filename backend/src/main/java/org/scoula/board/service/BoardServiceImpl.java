@@ -29,12 +29,20 @@ public class BoardServiceImpl implements BoardService {
     // 파일 저장될 디렉토리 경로
     private final static String BASE_DIR = "/Users/jordy/Documents/upload/board";
 
+    // 페이징된 게시글 목록 조회
     @Override
     public Page<BoardDTO> getPage(PageRequest pageRequest) {
+        // 1. 페이징된 게시글 목록 조회
         List<BoardVO> boards = boardMapper.getPage(pageRequest);
+
+        // 2. 전체 게시글 수 조회
         int totalCount = boardMapper.getTotalCount();
+
+        // 3. VO를 DTO로 변환하고 Page 객체 생성
         return Page.of(pageRequest, totalCount,
-                boards.stream().map(BoardDTO::of).toList());
+                boards.stream()
+                        .map(BoardDTO::of)  // VO → DTO 변환
+                        .toList());
     }
 
     // 목록 조회 서비스

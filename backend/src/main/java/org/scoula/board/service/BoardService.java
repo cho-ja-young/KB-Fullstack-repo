@@ -8,6 +8,7 @@ import org.scoula.common.pagination.PageRequest;
 import java.util.List;
 
 public interface BoardService {
+    // 페이징된 게시글 목록 조회
     Page<BoardDTO> getPage(PageRequest pageRequest);
 
     /**

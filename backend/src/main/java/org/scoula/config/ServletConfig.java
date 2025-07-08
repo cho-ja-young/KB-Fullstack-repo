@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.scoula.exception", "org.scoula.controller", "org.scoula.board.controller", "org.scoula.member.controller"})
+@ComponentScan(basePackages = {"org.scoula.exception", "org.scoula.controller", "org.scoula.board.controller", "org.scoula.member.controller", "org.scoula.travel.controller"})
 public class ServletConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
